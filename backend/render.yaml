@@ -11,3 +11,13 @@ services:
         value: production
       - key: PORT
         scope: runtime
+      - key: FRONTEND_URL
+        sync: false
+      - key: MAIL_SERVICE
+        value: gmail
+      - key: MAIL_USER
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false

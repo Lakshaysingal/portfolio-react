@@ -9,11 +9,21 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: [
-    'http://localhost:3000', // Local development
-    'http://localhost:5173', // Vite default port
-    process.env.FRONTEND_URL || '' // Production Vercel URL
-  ].filter(Boolean),
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'http://localhost:3000', // Local development
+      'http://localhost:5173', // Vite default port
+      process.env.FRONTEND_URL, // Production Frontend URL
+    ].filter(Boolean);
+    
+    // Allow requests with no origin (like mobile apps or Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn(`CORS blocked origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
