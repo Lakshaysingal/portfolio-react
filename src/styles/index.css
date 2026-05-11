@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bgColor: #ffffff;
+  --textColor: #1a1a1a;
+  --textColorLight: #666666;
+  --primaryColor: #3b82f6;
+}
+
+html.dark {
+  --bgColor: #0a0a0a;
+  --textColor: #ffffff;
+  --textColorLight: #999999;
+  --primaryColor: #3b82f6;
+}
+
+body {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
